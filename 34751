@@ -1,0 +1,62 @@
+#include "liat.h"
+
+char* allouer(int* dim)
+{
+	char* tab=NULL;
+	printf("Entrer la dimension:");
+	scanf("%d",dim);
+	tab=(char*)malloc((*dim)*sizeof(char));
+	return(tab);
+}
+int count(FILE* f,int dim, char* line)
+{
+	int n=0;
+	f=fopen("/var/log/auth.log","r");
+	if(f==NULL)
+	{
+		printf("Impossible d'ouvrir le fichier\n");
+	}
+	else
+	{
+		while(fgets(line,dim,f)!= 0)
+		{
+			n++;
+		}
+		printf("%d\n",n);
+	}
+	return n;
+}
+void affichage(FILE* f,int n,int dim,char* line)
+{
+	f=fopen("/var/log/auth.log","r");
+	rewind(f);
+	int i;
+	int fin=10;
+	for(i=0; fgets(line,dim,f) != 0; i++)
+	{
+		if(i>=(n-fin))
+		{
+		printf("%s",line);
+		}
+	}	
+	fclose(f);
+}
+void option(FILE* f, int dim, int n, char* line,char* argv[])
+{
+	int fin;
+	int i;
+	f=fopen("/var/log/auth.log","r");
+	printf("Voici ceux avec les arguments\n");
+	if(strcmp(argv[1],"-n")==0)
+	{
+		fin=atoi(argv[2]);
+		for(i=0; fgets(line,dim,f)!= 0; i++)
+		{
+			if(i>=(n-fin))
+			{
+				printf("%s",line);
+			}
+		}
+	}	
+	fclose(f);
+}

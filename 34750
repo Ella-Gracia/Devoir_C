@@ -1,0 +1,14 @@
+#include "liat.h"
+
+int main(int argc,char* argv[])
+{
+	int n;
+	int dim=0;
+	char* line=NULL;
+	FILE* f=NULL;
+	line=allouer(&dim);
+	n=count(f,dim,line);
+	affichage(f,n,dim,line);
+	option(f,dim,n,line,argv);
+	return 0;
+}

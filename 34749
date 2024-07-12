@@ -1,0 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char* allouer(int* dim);
+int count(FILE* f,int dim,char* line);
+void affichage(FILE* f,int n,int dim, char* line);
+void option(FILE* f, int dim, int n, char* line,char* argv[]);
